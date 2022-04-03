@@ -1,2 +1,2 @@
 # Daily-Coding-Problem
-Implementation of the problems for the book called "Daily Coding Problem" by Alex Miller &amp; Lawrence Wu.
+Implementation of the problems from the book "Daily Coding Problem" by Alex Miller & Lawrence Wu.
