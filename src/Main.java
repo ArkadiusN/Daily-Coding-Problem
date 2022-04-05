@@ -80,11 +80,34 @@ public class Main {
         System.out.println("(" + left + " " + right + ")");
     }
 
-    public static void main(String[] args) {
-//      getProduct(new int[]{1,2,3,4,5});
+    static void locateSmallestWindowTwo(int [] array){
+        int boundOne = 0, boundTwo = 0, i = 1, g = array.length-1;
 
+        while (true){
+            if(!(array[i-1] < array[i])){
+                boundOne = i-1;
+                break;
+            }
+            i++;
+        }
+
+        while (true){
+            if(!(array[g] > array[g-1])){
+                boundTwo = g-1;
+                break;
+            }
+            g--;
+        }
+
+        System.out.println("Index window is: " + "(" + boundOne + ", " + boundTwo + ")");
+    }
+
+    public static void main(String[] args) {
+
+//      getProduct(new int[]{1,2,3,4,5});
         locateSmallestWindow(new int[]{3,7,5,6,9});
         locateSmallestWindow(new int[]{3,10,5,7,9});
+        locateSmallestWindowTwo(new int[]{3,7,5,6,8,12,9});
     }
 
 }// End of class
