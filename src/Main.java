@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Implementation of the problems for the book called "Daily Coding Problem"
@@ -126,12 +127,35 @@ public class Main {
         return min_so_far;
     }
 
+    /** This method checks how many number to thr right hand side are smaller
+     * than each element at 'ith' element.
+     * BigO(N^2)
+     * @param array the array to check the elements to right.
+     * @return the integer array of smaller numbers to right.
+     */
+    static int[] smallerElementsToRight(int[] array){
+        int[] result = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i+1; j < array.length; j++) {
+                if(array[j] < array[i]){
+                    result[i] ++;
+                }
+            }
+        }
+        return result;
+    }
+
+
+
+
     public static void main(String[] args) {
 //        getProduct(new int[]{1,2,3,4,5});
 //        locateSmallestWindow(new int[]{3,7,5,6,9});
 //        locateSmallestWindowTwo(new int[]{3,7,5,6,8,12,9});
-        System.out.println(maximumSubArraySum(new int[]{34,-50, 42, 14, -5, 86}));
-        System.out.println(maximum_circular_subArray(new int []{8,-1,3,4}));
+//        System.out.println(maximumSubArraySum(new int[]{34,-50, 42, 14, -5, 86}));
+//        System.out.println(maximum_circular_subArray(new int []{8,-1,3,4}));
+        System.out.println(Arrays.toString(smallerElementsToRight(new int[]{3,4,9,6,1})));
+
 
 
 
