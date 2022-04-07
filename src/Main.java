@@ -102,12 +102,39 @@ public class Main {
         System.out.println("Index window is: " + "(" + boundOne + ", " + boundTwo + ")");
     }
 
-    public static void main(String[] args) {
+    static int maximumSubArraySum(int [] array){
+        int max_ending_here = 0, max_so_far = 0;
+        for (int i = array.length-1; i > 0; i--) {
+            max_ending_here = Math.max(array[i], max_ending_here + array[i]);
+            max_so_far = Math.max(max_so_far, max_ending_here);
+        }
+        return max_so_far;
+    }
 
-//      getProduct(new int[]{1,2,3,4,5});
-        locateSmallestWindow(new int[]{3,7,5,6,9});
-        locateSmallestWindow(new int[]{3,10,5,7,9});
-        locateSmallestWindowTwo(new int[]{3,7,5,6,8,12,9});
+    static int maximum_circular_subArray(int [] array){
+        int sum = Arrays.stream(array).sum();
+        int max_subArray_sum_wraparound = sum - minSubArraySum(array);
+        return Math.max(maximumSubArraySum(array), max_subArray_sum_wraparound);
+    }
+
+    static int minSubArraySum(int [] array){
+        int min_ending_here = 0, min_so_far = 0;
+        for (int i = 0; i <array.length; i++) {
+            min_ending_here = Math.min(array[i], min_ending_here + array[i]);
+            min_so_far = Math.min(min_so_far, min_ending_here);
+        }
+        return min_so_far;
+    }
+
+    public static void main(String[] args) {
+//        getProduct(new int[]{1,2,3,4,5});
+//        locateSmallestWindow(new int[]{3,7,5,6,9});
+//        locateSmallestWindowTwo(new int[]{3,7,5,6,8,12,9});
+        System.out.println(maximumSubArraySum(new int[]{34,-50, 42, 14, -5, 86}));
+        System.out.println(maximum_circular_subArray(new int []{8,-1,3,4}));
+
+
+
     }
 
 }// End of class
