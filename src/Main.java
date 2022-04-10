@@ -144,6 +144,28 @@ public class Main {
         }
         return result;
     }
+    
+    static void findAnagramIndices(String w, String s) {
+        char[] charArr = s.toCharArray();
+        String[] strArr = new String[s.length() - 1];
+        String put = "";
+        for (int i = 1; i < charArr.length; i++) {
+            put = String.valueOf(charArr[i - 1]) + String.valueOf(charArr[i]);
+            strArr[i - 1] = put;
+        }
+
+        String reverse = new StringBuilder(w).reverse().toString();
+        int[] indices = new int[strArr.length];
+        for (int i = 0; i < strArr.length; i++) {
+            System.out.print(strArr[i] + " ");
+            if (w.matches(strArr[i]) || reverse.matches(strArr[i])) {
+                indices[i] = i;
+            }
+        }
+
+        System.out.println();
+        System.out.println(Arrays.toString(indices));
+    }
 
 
 
@@ -154,8 +176,8 @@ public class Main {
 //        locateSmallestWindowTwo(new int[]{3,7,5,6,8,12,9});
 //        System.out.println(maximumSubArraySum(new int[]{34,-50, 42, 14, -5, 86}));
 //        System.out.println(maximum_circular_subArray(new int []{8,-1,3,4}));
-        System.out.println(Arrays.toString(smallerElementsToRight(new int[]{3,4,9,6,1})));
-
+//        System.out.println(Arrays.toString(smallerElementsToRight(new int[]{3,4,9,6,1})));
+       findAnagramIndices("ab", "abxaba");
 
 
 
