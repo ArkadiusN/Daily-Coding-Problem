@@ -35,23 +35,6 @@ public class Main {
         return result.toString();
     }
 
-    static int[] bubbleSort(int[] arr){
-        int n = arr.length;
-        int temp = 0;
-        int [] sorted = new int[n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j < n-1; j++) {
-                if(arr[j-1] > arr[j]){
-                    temp = arr[j-1];
-                    arr[j-1] = arr[j];
-                    arr[j] = temp;
-                }
-            }
-            sorted[i] = arr[i];
-        }
-        return sorted;
-    }
-
     static void smallestWindow(int[] arr){
         int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE, left = 0, right = 0;
         int[] bound = new int[2];
@@ -73,15 +56,61 @@ public class Main {
     }
 
 
+    /**
+     *  Brute force approach looking at each sub array and saving its
+     *  sum. Keeps track of the largest sum.
+     * <br>
+     *  Complexity of O(N^2)
+     **/
+    static int maxSubArraySum(int[] arr){
+        int maximumSubArraySum = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            int sum = 0;
+            for (int j = i; j < arr.length; j++) {
+                sum += arr[j];
+                if(sum > maximumSubArraySum){
+                    maximumSubArraySum = sum;
+                }
+            }
+        }
+        return maximumSubArraySum;
+    }
+
+    /**
+     *  Kadane's Algorithm that looks for the max_so_far
+     *  at the given index.
+     *  <br>
+     *  If it is greater than previous one's
+     *  saves it in max_so_far and keeps searching until the end of
+     *  array.
+     * <br>
+     *  Complexity of O(N)
+     **/
+    static int maxSubArraySum2(int[] arr){
+        int max_so_far = arr[0];
+        int max_ending_here = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max_ending_here + arr[i]) {
+                max_ending_here = arr[i];
+            } else {
+                max_ending_here = max_ending_here + arr[i];
+            }
+            if(max_so_far < max_ending_here){
+                max_so_far = max_ending_here;
+            }
+        }
+        return max_so_far;
+    }
+
+
 
 
 
     public static void main(String[] args) {
 //        productAllOtherElm(new int []{1,2,3,4,5});
-        smallestWindow(new int[]{3,7,5,6,9});
-        smallestWindow(new int[]{ 1, 2, 3, 4, 7, 5, 6, 8 });
-//
-//        smallestWindow(new int[]{1,2,3,4,5,9,8,7,6,10,11,12});
+//        smallestWindow(new int[]{3,7,5,6,9});
+        System.out.println(maxSubArraySum(new int[]{34,-50,42,14,-5,86}));
+        System.out.println(maxSubArraySum2(new int[]{-3,1,-8,4,-1,2,1,-5,5}));
 
     }
 
