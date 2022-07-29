@@ -102,6 +102,24 @@ public class Main {
         return max_so_far;
     }
 
+    /**
+     * Complexity of O(N^2)
+     * @param arr array of numbers to check on.
+     */
+    static void smallerToRight(int[] arr){
+        int [] counter = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            int count = 0;
+            for (int j = i+1; j < arr.length; j++) {
+                if(arr[i] > arr[j]){
+                    count++;
+                }
+            }
+            counter[i] = count;
+        }
+        System.out.println(Arrays.toString(counter));
+    }
+
 
 
 
@@ -109,8 +127,10 @@ public class Main {
     public static void main(String[] args) {
 //        productAllOtherElm(new int []{1,2,3,4,5});
 //        smallestWindow(new int[]{3,7,5,6,9});
-        System.out.println(maxSubArraySum(new int[]{34,-50,42,14,-5,86}));
-        System.out.println(maxSubArraySum2(new int[]{-3,1,-8,4,-1,2,1,-5,5}));
+//        System.out.println(maxSubArraySum(new int[]{34,-50,42,14,-5,86}));
+//        System.out.println(maxSubArraySum2(new int[]{-3,1,-8,4,-1,2,1,-5,5}));
+        smallerToRight(new int[]{3,4,9,6,1});
+        smallerToRight(new int[]{15,16,9,8,10}); //3,3,1,0,0
 
     }
 
